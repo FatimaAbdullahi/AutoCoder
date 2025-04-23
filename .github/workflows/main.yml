@@ -1,1 +1,14 @@
-#directory for github action workflow, contains workflow file main.yml
+#directory for gitHub action workflow, contains workflow file main.yml
+
+#name of the workflow
+name: Hello World Workflow
+#event that trigger the workflow
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Say Hello
+        run: echo "Hello, world"
+
