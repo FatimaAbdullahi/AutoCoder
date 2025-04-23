@@ -3,6 +3,7 @@
 #name of the workflow
 name: Hello World Workflow
 #event that trigger the workflow
+on: [push]
 jobs:
   say_hello:
     runs-on: ubuntu-latest
