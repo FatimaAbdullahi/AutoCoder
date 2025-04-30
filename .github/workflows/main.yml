@@ -1,15 +1,28 @@
 #directory for gitHub action workflow, contains workflow file main.yml
 
 #name of the workflow
-name: Hello World Workflow
+name: Access Issue Information
 #event that trigger the workflow
-on: [push]
+on:
+  issues:
+    types: [opened, reopened]
+
 jobs:
-  say_hello:
+  opened_issue:
     runs-on: ubuntu-latest
+    env:
+     ISSUE_NUMBER: ${{ github.event.issue.number }}
+     ISSUE_BODY: ${{ github.event.issue.body }}
+     ISSUE_ASSIGNEES: ${{ join(github.event.issue.assignees.*.login, ',') }}
+     ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Say Hello
-        run: echo "Hello, world"
+      - name: Print issue
+        run: |
+         echo "Issue Number: $ISSUE_NUMBER"
+         echo "Issue Body: $ISSUE_BODY"
+         echo "Issue Assignees: $ISSUE_ASSIGNEES"
+         echo "Issue Labels: $ISSUE_LABELS"
 
