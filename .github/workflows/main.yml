@@ -5,7 +5,7 @@ name: Access Issue Information
 #event that trigger the workflow
 on:
   issues:
-    types: [opened, reopened]
+    types: [labeled]  
 
 jobs:
   opened_issue:
